@@ -1,6 +1,7 @@
 package com.zee.zee5app;
 import com.zee.zee5app.dto.*;
 import com.zee.zee5app.service.*;
+import com.zee.zee5app.service.impl.UserServiceImpl;
 import com.zee.zee5app.repository.*;
 public class Main {
 
@@ -15,8 +16,8 @@ public class Main {
 		System.out.println(register.toString());
 		System.out.println(register.getEmail());
 		//Login
-		Login login=new Login();
-		UserService service = UserService.getInstance();
+		
+		UserService service = UserServiceImpl.getInstance();
 		for(int i=0;i<=11;i++) {
 			Register register2=new Register();
 			register2.setId("ab00"+i);
@@ -28,9 +29,10 @@ public class Main {
 		System.out.println(result);
 		}
 		
-		Register register2=service.getUserById("ab1");
+		Register register2=service.getUserById("ab000");
 		System.out.println(register2!=null);
-		for(Register register3:service.getUsers()) {
+		
+		for(Register register3:service.getAllUsers()) {
 			System.out.println(register3);
 		}
 		String id="ab000";
@@ -40,10 +42,10 @@ public class Main {
 		register4.setEmail("arpit@gmail.com");
 		register4.setPassword("Word");
 		register4.setId("v");
-		Register register5=service.updateUser(id, register4);
+		Register register5=service.updateUser(id,register4);
 		System.out.println(register5);
-		service.deleteUser("ab006");
-		
+		service.deleteUserById("ab006");
+		UserRepository repository= null;
 		
 
 	}
